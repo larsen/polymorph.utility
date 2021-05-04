@@ -105,3 +105,14 @@
                                         :initial-element ,(if (first rest)
                                                               (default (first rest))
                                                               0)))))))))))
+
+
+(defmacro with-array-info ((elt dim) array-form env &body body)
+  (let ((init-form-type (gensym))
+        (carray (gensym)))
+    `(let ((,init-form-type (%form-type ,array-form ,env)))
+       (let* ((,carray (specifier-ctype ,init-form-type))
+              (,elt (unparse (container-element-ctype ,carray)))
+              (,dim (container-dims ,carray)))
+         (declare (dynamic-extent ,carray))
+         ,@body))))
