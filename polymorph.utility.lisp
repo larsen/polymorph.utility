@@ -10,7 +10,7 @@
           (if (typep val '(or number character symbol))
               (values `(eql ,val) t)
               (values (type-of val) t)))
-        (adhoc-polymorphic-functions::primary-form-type form env)))
+        (adhoc-polymorphic-functions::form-type form env)))
 
   (deftype ind () `(integer 0 #.array-dimension-limit))
 
@@ -111,8 +111,7 @@
   (let ((init-form-type (gensym))
         (carray (gensym)))
     `(let ((,init-form-type (%form-type ,array-form ,env)))
-       (let* ((,carray (specifier-ctype ,init-form-type))
-              (,elt (unparse (container-element-ctype ,carray)))
+       (let* ((,carray (ctype:specifier-ctype ,init-form-type))
+              (,elt (ctype:unparse (container-element-ctype ,carray)))
               (,dim (container-dims ,carray)))
-         (declare (dynamic-extent ,carray))
          ,@body))))
