@@ -14,6 +14,8 @@
 
   (deftype ind () `(integer 0 #.array-dimension-limit))
 
+  (deftype maybe (typename) `(or null ,typename))
+
   (defparameter *default-impl* (make-hash-table)))
 
 
