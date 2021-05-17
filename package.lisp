@@ -4,5 +4,5 @@
   (:use #:cl #:adhoc-polymorphic-functions #:alexandria #:introspect-ctype)
   (:local-nicknames (:cm :sandalphon.compiler-macro)
                     (:mop :closer-mop))
-  (:export #:%form-type #:ind #:*default-impl*
+  (:export #:%form-type #:ind #:maybe #:*default-impl*
            #:default #:with-array-info))
