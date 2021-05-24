@@ -10,7 +10,7 @@
           (if (typep val '(or number character symbol))
               (values `(eql ,val) t)
               (values (type-of val) t)))
-        (adhoc-polymorphic-functions::nth-form-type form env 0 t t)))
+        (polymorphic-functions::nth-form-type form env 0 t t)))
 
   (deftype ind () `(integer 0 #.array-dimension-limit))
 
